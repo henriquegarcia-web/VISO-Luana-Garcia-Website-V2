@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -25,6 +25,8 @@ const GlobalStyle = createGlobalStyle`
     --light-green: #D8EAEE;
     --orange: #EE895D;
     --light-orange: #EDAE7B;
+
+    --orange-disabled: #a2968c;
     
     --text: #252525;
     --light-text: #797979;
@@ -57,9 +59,9 @@ const GlobalStyle = createGlobalStyle`
     background: var(--light-orange);
     border-radius: 10px;
   }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
 
 export const Container = styled.div`
   position: relative;
@@ -69,7 +71,7 @@ export const Container = styled.div`
   display: flex;
 
   /* border: 2px solid red; */
-`;
+`
 
 // -------------------------------------- SECTION COMPONENTS
 
@@ -117,7 +119,7 @@ export const SectionHeader = styled.div`
     height: 40px;
     margin-bottom: 15px;
   }
-`;
+`
 
 export const SectionContent = styled.div`
   display: flex;
@@ -137,7 +139,7 @@ export const SectionContent = styled.div`
     margin-left: 13px;
     padding: 10px 10px 10px 29px;
   }
-`;
+`
 
 // -------------------------------------- INPUTS
 
@@ -149,7 +151,7 @@ export const InputText = styled.input`
   letter-spacing: 0.5px;
 
   background-color: rgba(0, 0, 0, 0.05);
-`;
+`
 
 export const MainButton = styled.button`
   display: flex;
@@ -179,4 +181,4 @@ export const MainButton = styled.button`
     padding: 6px 16px;
     color: var(--white);
   }
-`;
+`

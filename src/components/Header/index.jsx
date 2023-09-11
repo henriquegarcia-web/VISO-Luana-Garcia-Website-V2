@@ -54,10 +54,10 @@ const Header = ({ isBlog }) => {
         </S.UserContainer1> */}
 
         <S.UserContainer2>
-          <Link to="/login">
+          <Link to="/analise-disc">
             {/* <FiUser />
             Bem-vinda, <b>Entre</b> */}
-            RELATÓRIO
+            ANÁLISE DISC
           </Link>
         </S.UserContainer2>
 

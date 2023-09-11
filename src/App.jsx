@@ -1,13 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 // import MetaTags from "react-meta-tags";
 
-import Home from "./pages/Home";
-import AdminPanel from "./pages/AdminPanel";
-import AdminLogin from "./pages/AdminLogin";
-import ContentsPage from "./pages/Contents";
+import Home from './pages/Home'
+import AdminPanel from './pages/AdminPanel'
+import AdminLogin from './pages/AdminLogin'
+import ContentsPage from './pages/Contents'
+import DiscProfileAssessment from './pages/_tools/DiscProfileAssessment'
 
-import "swiper/css/bundle";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import 'swiper/css/bundle'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
@@ -28,11 +29,17 @@ function App() {
           <Route path="/login" element={<AdminLogin />} />
           <Route path="/blog" element={<ContentsPage />} />
 
+          <Route path="/analise-disc" element={<DiscProfileAssessment />} />
+          <Route
+            path="/analise-disc/:userId"
+            element={<DiscProfileAssessment />}
+          />
+
           <Route path="*" element={<Home />} />
         </Routes>
       </Router>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
