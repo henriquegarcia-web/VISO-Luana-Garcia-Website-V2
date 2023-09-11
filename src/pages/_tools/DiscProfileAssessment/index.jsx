@@ -8,6 +8,7 @@ import * as I from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 
 import AssessmentLogin from './Views/AssessmentLogin'
+import AssessmentViewer from './Views/AssessmentViewer'
 
 const DiscProfileAssessment = () => {
   const params = useParams()
@@ -24,15 +25,7 @@ const DiscProfileAssessment = () => {
           </Link>
         </S.LogoContainer>
 
-        <span>
-          <h3>Olá, seja bem-vinda!</h3>
-          <p>
-            Vamos iniciar a sua <b>análise de perfil disc</b>
-            {/* Digite seu <b>usuário</b> e <b>senha</b> para continuar */}
-          </p>
-        </span>
-
-        <AssessmentLogin />
+        {!!userId ? <AssessmentViewer userId={userId} /> : <AssessmentLogin />}
 
         <Link to="/" className="backToMenu">
           <I.FiChevronLeft /> Voltar

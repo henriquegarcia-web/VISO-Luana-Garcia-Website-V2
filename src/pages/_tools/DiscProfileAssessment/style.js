@@ -37,30 +37,6 @@ export const AssessmentContainer = styled.div`
 
   background-color: white;
 
-  span {
-    text-align: center;
-    margin-bottom: 30px;
-
-    h3 {
-      font-size: var(--title);
-      margin-bottom: 5px;
-
-      color: var(--green);
-    }
-
-    p {
-      /* font-size: var(--subtitle); */
-      font-size: var(--title-paragraph);
-      font-weight: 300;
-
-      color: var(--green);
-    }
-
-    @media screen and (max-width: 800px) {
-      margin-bottom: 20px;
-    }
-  }
-
   a.backToMenu {
     position: absolute;
     bottom: 100%;
@@ -91,8 +67,7 @@ export const AssessmentContainer = styled.div`
 `
 
 export const LogoContainer = styled.div`
-  position: absolute;
-  top: 30px;
+  height: 80px;
   transition: 0.2s;
 
   img {

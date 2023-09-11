@@ -3,13 +3,16 @@ import * as S from './style'
 import * as G from '../../../../../globalStyles'
 import * as I from 'react-icons/fi'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 
-// import { handleSigninAdmin } from "@/firebase/auth";
+import {
+  createUserProfile,
+  checkIfUserExists
+} from '../../../../../firebase/contact'
 
 const assessmentSchema = Yup.object().shape({
   userName: Yup.string().required(),
@@ -17,6 +20,8 @@ const assessmentSchema = Yup.object().shape({
 })
 
 const AssessmentLogin = () => {
+  const navigate = useNavigate()
+
   const { handleSubmit, register, formState, reset } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(assessmentSchema),
@@ -31,35 +36,57 @@ const AssessmentLogin = () => {
   const handleAssessmentLogin = async (data) => {
     if (!isValid) return
 
-    console.log(data)
+    // VALIDAR ANTES SE O USUÁRIO JÁ EXISTE
 
-    // const signupAdminResponse = await handleSigninAdmin({
-    //   userName: data.userName,
-    //   userPhone: data.userPhone
-    // })
+    const checkIfUserExistsResponse = await checkIfUserExists({
+      userPhone: data.userPhone
+    })
 
-    // if (signupAdminResponse) {
-    //   reset()
-    //   navigate('/admin/companies')
-    // }
+    if (!!checkIfUserExistsResponse) {
+      reset()
+      navigate(`/analise-disc/${createUserResponseId}`)
+      return
+    }
+
+    const createUserResponseId = await createUserProfile({
+      userName: data.userName,
+      userPhone: data.userPhone
+    })
+
+    if (createUserResponseId) {
+      reset()
+      navigate(`/analise-disc/${createUserResponseId}`)
+    }
   }
 
   const submitIsDisable = !isValid
 
   return (
-    <S.AssessmentLogin onSubmit={handleSubmit(handleAssessmentLogin)}>
-      <G.InputText {...register('userName')} type="text" placeholder="Nome" />
-      <G.InputText
-        {...register('userPhone')}
-        type="text"
-        placeholder="Telefone"
-      />
+    <S.AssessmentLogin>
+      <S.AssessmentLoginHeader>
+        <h3>Olá, seja bem-vinda!</h3>
+        <p>
+          Vamos iniciar a sua <b>análise de perfil disc</b>
+          {/* Digite seu <b>usuário</b> e <b>senha</b> para continuar */}
+        </p>
+      </S.AssessmentLoginHeader>
 
-      <S.AssessmentLoginButton type="submit" disabled={submitIsDisable}>
-        Iniciar
-      </S.AssessmentLoginButton>
+      <S.AssessmentLoginContainer
+        onSubmit={handleSubmit(handleAssessmentLogin)}
+      >
+        <G.InputText {...register('userName')} type="text" placeholder="Nome" />
+        <G.InputText
+          {...register('userPhone')}
+          type="text"
+          placeholder="Telefone"
+        />
 
-      {/* {errorMessage && <S.MessageContainer>{errorMessage}</S.MessageContainer>} */}
+        <S.AssessmentLoginButton type="submit" disabled={submitIsDisable}>
+          Iniciar
+        </S.AssessmentLoginButton>
+
+        {/* {errorMessage && <S.MessageContainer>{errorMessage}</S.MessageContainer>} */}
+      </S.AssessmentLoginContainer>
     </S.AssessmentLogin>
   )
 }

@@ -1,10 +1,42 @@
 import styled from 'styled-components'
 
-export const AssessmentLogin = styled.form`
+export const AssessmentLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 100%; */
+  height: calc(100% - 80px);
+`
+
+export const AssessmentLoginHeader = styled.div`
+  text-align: center;
+  margin-bottom: 30px;
+
+  h3 {
+    font-size: var(--title);
+    margin-bottom: 5px;
+
+    color: var(--green);
+  }
+
+  p {
+    /* font-size: var(--subtitle); */
+    font-size: var(--title-paragraph);
+    font-weight: 300;
+
+    color: var(--green);
+  }
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 20px;
+  }
+`
+
+export const AssessmentLoginContainer = styled.form`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 75%;
 
   input {
     margin-bottom: 10px;
@@ -36,7 +68,6 @@ export const AssessmentLoginButton = styled.button`
     props.disabled ? 'var(--orange-disabled)' : 'var(--light-orange)'};
 
   &:hover {
-    /* background: var(--orange); */
     background: ${(props) =>
       props.disabled ? 'var(--orange-disabled)' : 'var(--orange)'};
   }
