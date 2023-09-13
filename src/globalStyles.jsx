@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
 
     --assessment-title: 18px;
     --assessment-subtitle: 15px;
-    --assessment-legend: 12px;
+    --assessment-legend: 13px;
   }
 
   // ------------------------- SCROLL BAR

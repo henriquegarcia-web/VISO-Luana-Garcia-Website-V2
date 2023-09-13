@@ -11,19 +11,7 @@ import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
 
-const perguntas = [
-  {
-    pergunta: 'PERGUNTA 1',
-    opcoes: [
-      { label: 'Muito conciliador', value: 0 },
-      { label: 'Conciliador', value: [1, 2] },
-      { label: 'Meio-termo', value: 2.5 },
-      { label: 'Conflitivo', value: [3, 4] },
-      { label: 'Muito conflitivo', value: 5 }
-    ]
-  }
-  // Adicione mais perguntas conforme necessário
-]
+import discQuestions from '../../../../../data/discQuestions'
 
 const AssessmentForm = (props) => {
   const { handleSubmit, register, formState, reset, control } = useForm({
@@ -35,10 +23,14 @@ const AssessmentForm = (props) => {
     // // }
   })
 
+  const handleSubmitData = (data) => {
+    console.log(data)
+  }
+
   return (
     <Modal
       {...props}
-      size="lg"
+      size="sm"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -50,67 +42,46 @@ const AssessmentForm = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <S.AssessmentForm>
-          {perguntas.map((pergunta, index) => (
-            <div key={index}>
-              <h4>{pergunta.pergunta}</h4>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Resposta</th>
-                    <th>Valor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pergunta.opcoes.map((opcao, opcaoIndex) => (
-                    <tr key={opcaoIndex}>
-                      <td>{opcao.label}</td>
-                      <td>
-                        {Array.isArray(opcao.value) ? (
+        <S.AssessmentFormContainer>
+          <S.AssessmentForm onSubmit={handleSubmit(handleSubmitData)}>
+            {discQuestions.map((pergunta, index) => (
+              <S.AssessmentFormTable key={index}>
+                <h4>{pergunta.pergunta}</h4>
+                <table>
+                  {/* <thead>
+                    <tr>
+                      <th>Resposta</th>
+                      <th>Opção</th>
+                    </tr>
+                  </thead> */}
+                  <tbody>
+                    {pergunta.opcoes.map((opcao, opcaoIndex) => (
+                      <tr key={opcaoIndex}>
+                        <td>{opcao.label}</td>
+                        <td>
                           <Controller
                             name={`respostas[${index}]`}
                             control={control}
                             render={({ field }) => (
-                              <div>
-                                {opcao.value.map((val, valIndex) => (
-                                  <div key={valIndex}>
-                                    <input
-                                      type="radio"
-                                      name={`pergunta_${index}`} // Grupo pelo nome da pergunta
-                                      value={val}
-                                      {...field}
-                                    />
-                                    <label>{val}</label>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          />
-                        ) : (
-                          <Controller
-                            name={`respostas[${index}]`}
-                            control={control}
-                            render={({ field }) => (
-                              <div>
-                                <input
+                              <S.AssessmentInputContainer>
+                                <S.AssessmentInput
                                   type="radio"
-                                  name={`pergunta_${index}`} // Grupo pelo nome da pergunta
+                                  name={`pergunta_${index}`}
                                   value={opcao.value}
                                   {...field}
                                 />
-                                <label>{opcao.value}</label>
-                              </div>
+                              </S.AssessmentInputContainer>
                             )}
                           />
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ))}
-        </S.AssessmentForm>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </S.AssessmentFormTable>
+            ))}
+          </S.AssessmentForm>
+        </S.AssessmentFormContainer>
       </Modal.Body>
       <Modal.Footer>
         <S.AssessmentFormFooter>
