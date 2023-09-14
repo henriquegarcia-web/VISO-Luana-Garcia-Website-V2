@@ -41,54 +41,52 @@ const AssessmentForm = (props) => {
           </S.AssessmentFormHeader>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <S.AssessmentFormContainer>
-          <S.AssessmentForm onSubmit={handleSubmit(handleSubmitData)}>
-            {discQuestions.map((pergunta, index) => (
-              <S.AssessmentFormTable key={index}>
-                <h4>{pergunta.pergunta}</h4>
-                <table>
-                  {/* <thead>
-                    <tr>
-                      <th>Resposta</th>
-                      <th>Opção</th>
-                    </tr>
-                  </thead> */}
-                  <tbody>
-                    {pergunta.opcoes.map((opcao, opcaoIndex) => (
-                      <tr key={opcaoIndex}>
-                        <td>{opcao.label}</td>
-                        <td>
-                          <Controller
-                            name={`respostas[${index}]`}
-                            control={control}
-                            render={({ field }) => (
-                              <S.AssessmentInputContainer>
-                                <S.AssessmentInput
-                                  type="radio"
-                                  name={`pergunta_${index}`}
-                                  value={opcao.value}
-                                  {...field}
-                                />
-                              </S.AssessmentInputContainer>
-                            )}
-                          />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </S.AssessmentFormTable>
-            ))}
-          </S.AssessmentForm>
-        </S.AssessmentFormContainer>
+      <Modal.Body className="modal_content">
+        <S.AssessmentForm onSubmit={handleSubmit(handleSubmitData)}>
+          <S.AssessmentFormStages></S.AssessmentFormStages>
+          <S.AssessmentFormContainer>
+            <S.AssessmentFormWrapper>
+              {discQuestions.map((pergunta, index) => (
+                <S.AssessmentFormTable key={index}>
+                  <h4>{pergunta.pergunta}</h4>
+                  <table>
+                    <tbody>
+                      {pergunta.opcoes.map((opcao, opcaoIndex) => (
+                        <tr key={opcaoIndex}>
+                          <td>{opcao.label}</td>
+                          <td>
+                            <Controller
+                              name={`respostas[${index}]`}
+                              control={control}
+                              render={({ field }) => (
+                                <S.AssessmentInputContainer>
+                                  <S.AssessmentInput
+                                    type="radio"
+                                    name={`pergunta_${index}`}
+                                    value={opcao.value}
+                                    {...field}
+                                    onChange={() => {
+                                      field.onChange(opcao.value)
+                                    }}
+                                  />
+                                </S.AssessmentInputContainer>
+                              )}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </S.AssessmentFormTable>
+              ))}
+            </S.AssessmentFormWrapper>
+          </S.AssessmentFormContainer>
+          <S.AssessmentFormFooter>
+            <Button onClick={props.onHide}>Cancelar</Button>
+            <Button type="submit">Próximo</Button>
+          </S.AssessmentFormFooter>
+        </S.AssessmentForm>
       </Modal.Body>
-      <Modal.Footer>
-        <S.AssessmentFormFooter>
-          <Button onClick={props.onHide}>Cancelar</Button>
-          <Button onClick={props.onHide}>Próximo</Button>
-        </S.AssessmentFormFooter>
-      </Modal.Footer>
     </Modal>
   )
 }

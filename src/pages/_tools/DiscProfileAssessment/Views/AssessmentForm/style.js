@@ -12,20 +12,29 @@ export const AssessmentFormHeader = styled.div`
   }
 `
 
+export const AssessmentForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`
+
+export const AssessmentFormStages = styled.div`
+  display: flex;
+`
+
 export const AssessmentFormContainer = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  flex: 1;
   max-height: 60vh;
   overflow: auto;
   padding-right: 10px;
 
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
   }
 `
 
-export const AssessmentForm = styled.form`
+export const AssessmentFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -103,5 +112,7 @@ export const AssessmentInput = styled.input`
 
 export const AssessmentFormFooter = styled.div`
   display: flex;
+  justify-content: flex-end;
+  padding: 16px 13px 0 0;
   column-gap: 10px;
 `

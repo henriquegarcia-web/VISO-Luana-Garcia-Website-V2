@@ -63,6 +63,10 @@ const GlobalStyle = createGlobalStyle`
     background: var(--light-orange);
     border-radius: 10px;
   }
+
+  .modal_content {
+    padding-right: 5px;
+}
 `
 
 export default GlobalStyle
