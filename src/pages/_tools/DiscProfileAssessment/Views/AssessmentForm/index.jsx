@@ -12,19 +12,62 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
 
 import discQuestions from '../../../../../data/discQuestions'
+import { useEffect } from 'react'
 
 const AssessmentForm = (props) => {
-  const { handleSubmit, register, formState, reset, control } = useForm({
-    // mode: 'onBlur',
-    // // resolver: yupResolver(assessmentSchema),
-    // // defaultValues: {
-    // //   userName: '',
-    // //   userPhone: ''
-    // // }
-  })
+  const { handleSubmit, register, formState, reset, control, watch } = useForm()
+  const { errors, isSubmitting, isValid } = formState
+
+  const selectedAnswers = watch()
+
+  const [progress, setProgress] = useState(0)
+
+  const calculateProgress = () => {
+    const totalQuestions = discQuestions.reduce(
+      (acc, questionGroup) => acc + questionGroup.questionGroupData.length,
+      0
+    )
+
+    const answeredQuestions = Object.values(selectedAnswers).filter(
+      (value) => typeof value !== 'undefined'
+    ).length
+
+    const currentProgress = (answeredQuestions / totalQuestions) * 100
+
+    setProgress(currentProgress)
+  }
+
+  useEffect(() => {
+    calculateProgress()
+  }, [selectedAnswers])
+
+  const calculateSumByQuestionGroup = (answers) => {
+    const sumByGroup = {}
+
+    discQuestions.forEach((questionGroup) => {
+      sumByGroup[questionGroup.questionGroupId] = 0
+    })
+
+    Object.keys(answers).forEach((questionId) => {
+      const question = discQuestions.find((group) =>
+        group.questionGroupData.find((q) => q.questionId === questionId)
+      )
+      if (question) {
+        const groupSum = sumByGroup[question.questionGroupId]
+        const answerValue = answers[questionId]
+        if (typeof answerValue === 'number') {
+          sumByGroup[question.questionGroupId] = groupSum + answerValue
+        }
+      }
+    })
+
+    return sumByGroup
+  }
 
   const handleSubmitData = (data) => {
-    console.log(data)
+    const sumByGroup = calculateSumByQuestionGroup(data)
+
+    console.log(sumByGroup)
   }
 
   return (
@@ -43,47 +86,59 @@ const AssessmentForm = (props) => {
       </Modal.Header>
       <Modal.Body className="modal_content">
         <S.AssessmentForm onSubmit={handleSubmit(handleSubmitData)}>
-          <S.AssessmentFormStages></S.AssessmentFormStages>
+          <S.AssessmentFormStages>
+            <S.FormStageBar>
+              <S.FormStageBarFill fill={progress} />
+            </S.FormStageBar>
+          </S.AssessmentFormStages>
           <S.AssessmentFormContainer>
-            <S.AssessmentFormWrapper>
-              {discQuestions.map((pergunta, index) => (
-                <S.AssessmentFormTable key={index}>
-                  <h4>{pergunta.pergunta}</h4>
-                  <table>
-                    <tbody>
-                      {pergunta.opcoes.map((opcao, opcaoIndex) => (
-                        <tr key={opcaoIndex}>
-                          <td>{opcao.label}</td>
-                          <td>
-                            <Controller
-                              name={`respostas[${index}]`}
-                              control={control}
-                              render={({ field }) => (
-                                <S.AssessmentInputContainer>
-                                  <S.AssessmentInput
-                                    type="radio"
-                                    name={`pergunta_${index}`}
-                                    value={opcao.value}
-                                    {...field}
-                                    onChange={() => {
-                                      field.onChange(opcao.value)
-                                    }}
-                                  />
-                                </S.AssessmentInputContainer>
-                              )}
-                            />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </S.AssessmentFormTable>
-              ))}
-            </S.AssessmentFormWrapper>
+            {discQuestions.map((questionGroup) => (
+              <S.AssessmentFormGroup key={questionGroup.questionGroupId}>
+                <S.AssessmentFormWrapperTitle>
+                  {questionGroup.questionGroupLabel}
+                </S.AssessmentFormWrapperTitle>
+                <S.AssessmentFormWrapper>
+                  {questionGroup.questionGroupData.map((question) => (
+                    <S.AssessmentFormTable key={question.questionId}>
+                      <table>
+                        <tbody>
+                          {question.questionOptions.map((option) => (
+                            <tr key={option.answerId}>
+                              <td>{option.answerLabel}</td>
+                              <td>
+                                <Controller
+                                  name={question.questionId}
+                                  rules={{ required: true }}
+                                  control={control}
+                                  render={({ field }) => (
+                                    <S.AssessmentInputContainer>
+                                      <S.AssessmentInput
+                                        type="radio"
+                                        value={option.answerValue}
+                                        {...field}
+                                        onChange={() => {
+                                          field.onChange(option.answerValue)
+                                        }}
+                                      />
+                                    </S.AssessmentInputContainer>
+                                  )}
+                                />
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </S.AssessmentFormTable>
+                  ))}
+                </S.AssessmentFormWrapper>
+              </S.AssessmentFormGroup>
+            ))}
           </S.AssessmentFormContainer>
           <S.AssessmentFormFooter>
             <Button onClick={props.onHide}>Cancelar</Button>
-            <Button type="submit">Próximo</Button>
+            <Button type="submit" disabled={!isValid}>
+              Concluir
+            </Button>
           </S.AssessmentFormFooter>
         </S.AssessmentForm>
       </Modal.Body>
@@ -92,3 +147,9 @@ const AssessmentForm = (props) => {
 }
 
 export default AssessmentForm
+
+// ============================================ ASSESSMENT CONCLUSION
+
+export const AssessmentConclusion = () => {
+  return <div>AssessmentConclusion</div>
+}

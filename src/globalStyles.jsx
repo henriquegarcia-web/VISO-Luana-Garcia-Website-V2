@@ -33,6 +33,9 @@ const GlobalStyle = createGlobalStyle`
 
     --error: orangered;
 
+    --orange-bar: #ffe9d7;
+    --orange-bar-fill: #e67b23;
+
     /* --------------------------------- PARÁGRAFO */
 
     --text-paragraph: 16px;

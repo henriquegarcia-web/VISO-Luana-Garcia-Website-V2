@@ -19,10 +19,33 @@ export const AssessmentForm = styled.form`
 
 export const AssessmentFormStages = styled.div`
   display: flex;
+  padding: 0 11px 20px 0;
+`
+
+export const FormStageBar = styled.div`
+  display: flex;
+  width: 100%;
+  height: 8px;
+  border-radius: 20px;
+  overflow: hidden;
+
+  background-color: var(--orange-bar);
+`
+
+export const FormStageBarFill = styled.div`
+  display: flex;
+  width: ${(props) => `${props.fill}%`};
+  height: 100%;
+  border-radius: 20px;
+  transition: 0.3s;
+
+  background-color: var(--orange-bar-fill);
 `
 
 export const AssessmentFormContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  row-gap: 20px;
   width: 100%;
   flex: 1;
   max-height: 60vh;
@@ -34,17 +57,36 @@ export const AssessmentFormContainer = styled.div`
   }
 `
 
+export const AssessmentFormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+`
+
+export const AssessmentFormWrapperTitle = styled.h2`
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  color: var(--orange);
+`
+
 export const AssessmentFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: fit-content;
-  row-gap: 15px;
+  row-gap: 12px;
   padding-bottom: 5px;
 `
 
 export const AssessmentFormTable = styled.div`
   width: 100%;
+
+  background-color: aliceblue;
+  border: 1px solid lightblue;
+  border-bottom: none;
 
   h4 {
     font-size: var(--assessment-legend);
@@ -61,12 +103,13 @@ export const AssessmentFormTable = styled.div`
 
   tr {
     text-align: center;
+    border-bottom: 1px solid lightblue;
   }
 
-  th,
+  /* th,
   td {
     border: 1px solid rgba(0, 0, 0, 0.6);
-  }
+  } */
 
   th {
     font-size: var(--assessment-legend);
@@ -76,24 +119,8 @@ export const AssessmentFormTable = styled.div`
   td {
     font-size: var(--assessment-legend);
     line-height: 1.8;
-    text-align: center;
-
-    .answer_container {
-      display: flex;
-      justify-content: center;
-      column-gap: 10px;
-    }
-
-    .answer_input {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      column-gap: 5px;
-
-      input {
-        cursor: pointer;
-      }
-    }
+    text-align: left;
+    padding-left: 14px;
   }
 `
 
@@ -101,7 +128,7 @@ export const AssessmentInputContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px 0px;
+  padding: 6px 0px;
 `
 
 export const AssessmentInput = styled.input`
