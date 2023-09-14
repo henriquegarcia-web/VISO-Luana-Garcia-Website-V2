@@ -143,3 +143,52 @@ export const AssessmentFormFooter = styled.div`
   padding: 16px 13px 0 0;
   column-gap: 10px;
 `
+
+// ============================================ ASSESSMENT CONCLUSION
+
+export const AssessmentConclusion = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 5px;
+  padding: 0 10px 5px 0;
+
+  svg {
+    font-size: 50px;
+
+    color: var(--green);
+  }
+`
+
+export const AssessmentConclusionLabel = styled.p`
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 600;
+  text-align: center;
+
+  color: var(--green);
+
+  b {
+    font-weight: 800;
+  }
+`
+
+export const AssessmentConclusionCta = styled.button`
+  font-size: var(--text-paragraph);
+  font-weight: 400;
+  padding: 8px 14px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  transition: 0.2s;
+
+  color: var(--white);
+  background: ${(props) =>
+    props.disabled ? 'var(--orange-disabled)' : 'var(--light-orange)'};
+
+  &:hover {
+    background: ${(props) =>
+      props.disabled ? 'var(--orange-disabled)' : 'var(--orange)'};
+  }
+`

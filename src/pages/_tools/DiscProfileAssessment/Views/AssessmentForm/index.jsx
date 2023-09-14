@@ -15,6 +15,38 @@ import discQuestions from '../../../../../data/discQuestions'
 import { useEffect } from 'react'
 
 const AssessmentForm = (props) => {
+  const [concluded, setConcluded] = useState(false)
+
+  return (
+    <Modal
+      {...props}
+      size="sm"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          <S.AssessmentFormHeader>
+            Análise de perfil <b>DISC</b>
+          </S.AssessmentFormHeader>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="modal_content">
+        {!concluded ? (
+          <AssessmentConclusion />
+        ) : (
+          <Assessment setConcluded={setConcluded} onHide={props.onHide} />
+        )}
+      </Modal.Body>
+    </Modal>
+  )
+}
+
+export default AssessmentForm
+
+// ============================================ ASSESSMENT CONCLUSION
+
+export const Assessment = ({ setConcluded, onHide }) => {
   const { handleSubmit, register, formState, reset, control, watch } = useForm()
   const { errors, isSubmitting, isValid } = formState
 
@@ -68,88 +100,79 @@ const AssessmentForm = (props) => {
     const sumByGroup = calculateSumByQuestionGroup(data)
 
     console.log(sumByGroup)
+    setConcluded(true)
   }
-
   return (
-    <Modal
-      {...props}
-      size="sm"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          <S.AssessmentFormHeader>
-            Análise de perfil <b>DISC</b>
-          </S.AssessmentFormHeader>
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body className="modal_content">
-        <S.AssessmentForm onSubmit={handleSubmit(handleSubmitData)}>
-          <S.AssessmentFormStages>
-            <S.FormStageBar>
-              <S.FormStageBarFill fill={progress} />
-            </S.FormStageBar>
-          </S.AssessmentFormStages>
-          <S.AssessmentFormContainer>
-            {discQuestions.map((questionGroup) => (
-              <S.AssessmentFormGroup key={questionGroup.questionGroupId}>
-                <S.AssessmentFormWrapperTitle>
-                  {questionGroup.questionGroupLabel}
-                </S.AssessmentFormWrapperTitle>
-                <S.AssessmentFormWrapper>
-                  {questionGroup.questionGroupData.map((question) => (
-                    <S.AssessmentFormTable key={question.questionId}>
-                      <table>
-                        <tbody>
-                          {question.questionOptions.map((option) => (
-                            <tr key={option.answerId}>
-                              <td>{option.answerLabel}</td>
-                              <td>
-                                <Controller
-                                  name={question.questionId}
-                                  rules={{ required: true }}
-                                  control={control}
-                                  render={({ field }) => (
-                                    <S.AssessmentInputContainer>
-                                      <S.AssessmentInput
-                                        type="radio"
-                                        value={option.answerValue}
-                                        {...field}
-                                        onChange={() => {
-                                          field.onChange(option.answerValue)
-                                        }}
-                                      />
-                                    </S.AssessmentInputContainer>
-                                  )}
-                                />
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </S.AssessmentFormTable>
-                  ))}
-                </S.AssessmentFormWrapper>
-              </S.AssessmentFormGroup>
-            ))}
-          </S.AssessmentFormContainer>
-          <S.AssessmentFormFooter>
-            <Button onClick={props.onHide}>Cancelar</Button>
-            <Button type="submit" disabled={!isValid}>
-              Concluir
-            </Button>
-          </S.AssessmentFormFooter>
-        </S.AssessmentForm>
-      </Modal.Body>
-    </Modal>
+    <S.AssessmentForm onSubmit={handleSubmit(handleSubmitData)}>
+      <S.AssessmentFormStages>
+        <S.FormStageBar>
+          <S.FormStageBarFill fill={progress} />
+        </S.FormStageBar>
+      </S.AssessmentFormStages>
+      <S.AssessmentFormContainer>
+        {discQuestions.map((questionGroup) => (
+          <S.AssessmentFormGroup key={questionGroup.questionGroupId}>
+            <S.AssessmentFormWrapperTitle>
+              {questionGroup.questionGroupLabel}
+            </S.AssessmentFormWrapperTitle>
+            <S.AssessmentFormWrapper>
+              {questionGroup.questionGroupData.map((question) => (
+                <S.AssessmentFormTable key={question.questionId}>
+                  <table>
+                    <tbody>
+                      {question.questionOptions.map((option) => (
+                        <tr key={option.answerId}>
+                          <td>{option.answerLabel}</td>
+                          <td>
+                            <Controller
+                              name={question.questionId}
+                              rules={{ required: true }}
+                              control={control}
+                              render={({ field }) => (
+                                <S.AssessmentInputContainer>
+                                  <S.AssessmentInput
+                                    type="radio"
+                                    value={option.answerValue}
+                                    {...field}
+                                    onChange={() => {
+                                      field.onChange(option.answerValue)
+                                    }}
+                                  />
+                                </S.AssessmentInputContainer>
+                              )}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </S.AssessmentFormTable>
+              ))}
+            </S.AssessmentFormWrapper>
+          </S.AssessmentFormGroup>
+        ))}
+      </S.AssessmentFormContainer>
+      <S.AssessmentFormFooter>
+        <Button onClick={onHide}>Cancelar</Button>
+        <Button type="submit" disabled={!isValid}>
+          Concluir
+        </Button>
+      </S.AssessmentFormFooter>
+    </S.AssessmentForm>
   )
 }
-
-export default AssessmentForm
 
 // ============================================ ASSESSMENT CONCLUSION
 
 export const AssessmentConclusion = () => {
-  return <div>AssessmentConclusion</div>
+  return (
+    <S.AssessmentConclusion>
+      <S.AssessmentConclusionLabel>
+        <b>Parabéns!</b> Análise concluída com sucesso.
+      </S.AssessmentConclusionLabel>
+      <S.AssessmentConclusionCta onClick={() => {}}>
+        Ver resultado
+      </S.AssessmentConclusionCta>
+    </S.AssessmentConclusion>
+  )
 }
