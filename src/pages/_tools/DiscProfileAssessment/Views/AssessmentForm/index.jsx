@@ -14,6 +14,7 @@ import { useForm, Controller } from 'react-hook-form'
 import discQuestions from '../../../../../data/discQuestions'
 
 import { handleRegisterAssessment } from '../../../../../firebase/contact'
+import { useMemo } from 'react'
 
 const AssessmentFormModal = (props) => {
   return (
@@ -67,7 +68,44 @@ export { AssessmentFormModal, AssessmentViewModal }
 
 // ============================================ ASSESSMENT CONCLUSION
 
+const calculatePercentage = (value) => {
+  const percentage = (value / 50) * 100
+  return percentage
+}
+
+const classificate = (value) => {
+  if (value >= 41 && value <= 50) {
+    return 'Altíssima intensidade'
+  } else if (value >= 30 && value <= 40) {
+    return 'Alta intensidade'
+  } else if (value >= 20 && value <= 29) {
+    return 'Média intensidade'
+  } else if (value >= 11 && value <= 19) {
+    return 'Baixa intensidade'
+  } else if (value >= 0 && value <= 10) {
+    return 'Baixíssima intensidade'
+  }
+}
+
 export const AssessmentConclusion = ({ savedResults, onHide, isFirstTime }) => {
+  const percentageResult = useMemo(() => {
+    return {
+      dominanceResult: calculatePercentage(savedResults.dominanceResult),
+      influenceResult: calculatePercentage(savedResults.influenceResult),
+      stabilityResult: calculatePercentage(savedResults.stabilityResult),
+      conformityResult: calculatePercentage(savedResults.conformityResult)
+    }
+  }, [savedResults])
+
+  const labelResult = useMemo(() => {
+    return {
+      dominanceResult: classificate(savedResults.dominanceResult),
+      influenceResult: classificate(savedResults.influenceResult),
+      stabilityResult: classificate(savedResults.stabilityResult),
+      conformityResult: classificate(savedResults.conformityResult)
+    }
+  }, [savedResults])
+
   return (
     <S.AssessmentConclusion>
       {isFirstTime && (
@@ -75,7 +113,68 @@ export const AssessmentConclusion = ({ savedResults, onHide, isFirstTime }) => {
           <b>Parabéns!</b> Análise concluída com sucesso.
         </S.AssessmentConclusionLabel>
       )}
-      <S.AssessmentConclusionResults>Resultado</S.AssessmentConclusionResults>
+      <S.AssessmentConclusionResults>
+        <S.PercentageBlock>
+          <S.PercentageBlockItem>
+            <S.PercentageBlockItemLabel>Dominância</S.PercentageBlockItemLabel>
+            <S.PercentageBlockItemBar>
+              <S.PercentageBlockItemFill
+                fillColor="#d9534f"
+                fill={percentageResult.dominanceResult}
+              />
+            </S.PercentageBlockItemBar>
+          </S.PercentageBlockItem>
+          <S.PercentageBlockItem>
+            <S.PercentageBlockItemLabel>Influência</S.PercentageBlockItemLabel>
+            <S.PercentageBlockItemBar>
+              <S.PercentageBlockItemFill
+                fillColor="#f0ad4e"
+                fill={percentageResult.influenceResult}
+              />
+            </S.PercentageBlockItemBar>
+          </S.PercentageBlockItem>
+          <S.PercentageBlockItem>
+            <S.PercentageBlockItemLabel>
+              Estabilidade
+            </S.PercentageBlockItemLabel>
+            <S.PercentageBlockItemBar>
+              <S.PercentageBlockItemFill
+                fillColor="#5cb85c"
+                fill={percentageResult.stabilityResult}
+              />
+            </S.PercentageBlockItemBar>
+          </S.PercentageBlockItem>
+          <S.PercentageBlockItem>
+            <S.PercentageBlockItemLabel>
+              Conformidade
+            </S.PercentageBlockItemLabel>
+            <S.PercentageBlockItemBar>
+              <S.PercentageBlockItemFill
+                fillColor="#337ab7"
+                fill={percentageResult.conformityResult}
+              />
+            </S.PercentageBlockItemBar>
+          </S.PercentageBlockItem>
+        </S.PercentageBlock>
+        <S.LabelBlock>
+          <S.LabelBlockItem>
+            <b>Dominância: </b>
+            <p>{labelResult.dominanceResult}</p>
+          </S.LabelBlockItem>
+          <S.LabelBlockItem>
+            <b>Influência: </b>
+            <p>{labelResult.influenceResult}</p>
+          </S.LabelBlockItem>
+          <S.LabelBlockItem>
+            <b>Estabilidade: </b>
+            <p>{labelResult.stabilityResult}</p>
+          </S.LabelBlockItem>
+          <S.LabelBlockItem>
+            <b>Conformidade: </b>
+            <p>{labelResult.conformityResult}</p>
+          </S.LabelBlockItem>
+        </S.LabelBlock>
+      </S.AssessmentConclusionResults>
       <S.AssessmentConclusionCta onClick={onHide}>
         Fechar
       </S.AssessmentConclusionCta>

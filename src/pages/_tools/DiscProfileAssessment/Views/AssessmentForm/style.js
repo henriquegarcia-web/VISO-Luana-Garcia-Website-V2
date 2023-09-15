@@ -176,11 +176,80 @@ export const AssessmentConclusionLabel = styled.p`
 
 export const AssessmentConclusionResults = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
-
-  border: 1px solid red;
+  row-gap: 30px;
 `
+
+export const PercentageBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+`
+
+export const PercentageBlockItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+`
+
+export const PercentageBlockItemLabel = styled.div`
+  display: flex;
+
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+`
+
+export const PercentageBlockItemBar = styled.div`
+  display: flex;
+  width: 100%;
+  height: 12px;
+
+  background-color: rgba(0, 0, 0, 0.08);
+`
+
+export const PercentageBlockItemFill = styled.div`
+  display: flex;
+  width: ${(props) => props.fill}%;
+  height: 100%;
+
+  background-color: ${(props) => props.fillColor};
+`
+
+export const LabelBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  width: 100%;
+`
+
+export const LabelBlockItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  font-size: 15px;
+  line-height: 15px;
+  font-weight: 300;
+
+  b {
+    font-weight: 500;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+`
+
+// export const AssessmentConclusionResults = styled.div`
+//   display: flex;
+// `
+
+// export const AssessmentConclusionResults = styled.div`
+//   display: flex;
+// `
 
 export const AssessmentConclusionCta = styled.button`
   font-size: var(--text-paragraph);
