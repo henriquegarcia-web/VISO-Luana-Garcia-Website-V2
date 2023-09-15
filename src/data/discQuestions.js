@@ -39,100 +39,100 @@ const discQuestions = [
             answerValue: optionValue5
           }
         ]
-      },
-      {
-        questionId: 'question_d_2',
-        questionLabel: 'PERGUNTA D 2',
-        questionOptions: [
-          {
-            answerId: 'answer_2_D1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_2_D2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_2_D3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_2_D4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_2_D5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
-      },
-      {
-        questionId: 'question_d_3',
-        questionLabel: 'PERGUNTA D 3',
-        questionOptions: [
-          {
-            answerId: 'answer_3_D1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_3_D2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_3_D3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_3_D4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_3_D5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
-      },
-      {
-        questionId: 'question_d_4',
-        questionLabel: 'PERGUNTA D 4',
-        questionOptions: [
-          {
-            answerId: 'answer_4_D1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_4_D2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_4_D3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_4_D4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_4_D5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
       }
+      // {
+      //   questionId: 'question_d_2',
+      //   questionLabel: 'PERGUNTA D 2',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_2_D1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_2_D2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_2_D3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_2_D4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_2_D5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // },
+      // {
+      //   questionId: 'question_d_3',
+      //   questionLabel: 'PERGUNTA D 3',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_3_D1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_3_D2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_3_D3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_3_D4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_3_D5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // },
+      // {
+      //   questionId: 'question_d_4',
+      //   questionLabel: 'PERGUNTA D 4',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_4_D1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_4_D2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_4_D3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_4_D4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_4_D5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // }
     ]
   },
   {
@@ -169,100 +169,100 @@ const discQuestions = [
             answerValue: optionValue5
           }
         ]
-      },
-      {
-        questionId: 'question_i_2',
-        questionLabel: 'PERGUNTA I 2',
-        questionOptions: [
-          {
-            answerId: 'answer_2_I1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_2_I2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_2_I3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_2_I4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_2_I5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
-      },
-      {
-        questionId: 'question_i_3',
-        questionLabel: 'PERGUNTA I 3',
-        questionOptions: [
-          {
-            answerId: 'answer_3_I1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_3_I2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_3_I3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_3_I4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_3_I5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
-      },
-      {
-        questionId: 'question_i_4',
-        questionLabel: 'PERGUNTA I 4',
-        questionOptions: [
-          {
-            answerId: 'answer_4_I1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_4_I2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_4_I3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_4_I4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_4_I5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
       }
+      // {
+      //   questionId: 'question_i_2',
+      //   questionLabel: 'PERGUNTA I 2',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_2_I1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_2_I2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_2_I3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_2_I4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_2_I5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // },
+      // {
+      //   questionId: 'question_i_3',
+      //   questionLabel: 'PERGUNTA I 3',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_3_I1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_3_I2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_3_I3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_3_I4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_3_I5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // },
+      // {
+      //   questionId: 'question_i_4',
+      //   questionLabel: 'PERGUNTA I 4',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_4_I1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_4_I2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_4_I3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_4_I4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_4_I5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // }
     ]
   },
   {
@@ -299,100 +299,100 @@ const discQuestions = [
             answerValue: optionValue5
           }
         ]
-      },
-      {
-        questionId: 'question_s_2',
-        questionLabel: 'PERGUNTA S 2',
-        questionOptions: [
-          {
-            answerId: 'answer_2_S1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_2_S2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_2_S3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_2_S4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_2_S5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
-      },
-      {
-        questionId: 'question_s_3',
-        questionLabel: 'PERGUNTA S 3',
-        questionOptions: [
-          {
-            answerId: 'answer_3_S1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_3_S2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_3_S3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_3_S4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_3_S5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
-      },
-      {
-        questionId: 'question_s_4',
-        questionLabel: 'PERGUNTA S 4',
-        questionOptions: [
-          {
-            answerId: 'answer_4_S1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_4_S2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_4_S3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_4_S4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_4_S5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
       }
+      // {
+      //   questionId: 'question_s_2',
+      //   questionLabel: 'PERGUNTA S 2',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_2_S1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_2_S2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_2_S3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_2_S4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_2_S5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // },
+      // {
+      //   questionId: 'question_s_3',
+      //   questionLabel: 'PERGUNTA S 3',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_3_S1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_3_S2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_3_S3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_3_S4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_3_S5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // },
+      // {
+      //   questionId: 'question_s_4',
+      //   questionLabel: 'PERGUNTA S 4',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_4_S1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_4_S2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_4_S3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_4_S4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_4_S5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // }
     ]
   },
   {
@@ -429,100 +429,100 @@ const discQuestions = [
             answerValue: optionValue5
           }
         ]
-      },
-      {
-        questionId: 'question_c_2',
-        questionLabel: 'PERGUNTA C 2',
-        questionOptions: [
-          {
-            answerId: 'answer_2_C1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_2_C2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_2_C3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_2_C4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_2_C5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
-      },
-      {
-        questionId: 'question_c_3',
-        questionLabel: 'PERGUNTA C 3',
-        questionOptions: [
-          {
-            answerId: 'answer_3_C1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_3_C2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_3_C3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_3_C4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_3_C5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
-      },
-      {
-        questionId: 'question_c_4',
-        questionLabel: 'PERGUNTA C 4',
-        questionOptions: [
-          {
-            answerId: 'answer_4_C1',
-            answerLabel: 'Muito conciliador',
-            answerValue: optionValue1
-          },
-          {
-            answerId: 'answer_4_C2',
-            answerLabel: 'Conciliador',
-            answerValue: optionValue2
-          },
-          {
-            answerId: 'answer_4_C3',
-            answerLabel: 'Meio-termo',
-            answerValue: optionValue3
-          },
-          {
-            answerId: 'answer_4_C4',
-            answerLabel: 'Conflitivo',
-            answerValue: optionValue4
-          },
-          {
-            answerId: 'answer_4_C5',
-            answerLabel: 'Muito conflitivo',
-            answerValue: optionValue5
-          }
-        ]
       }
+      // {
+      //   questionId: 'question_c_2',
+      //   questionLabel: 'PERGUNTA C 2',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_2_C1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_2_C2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_2_C3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_2_C4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_2_C5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // },
+      // {
+      //   questionId: 'question_c_3',
+      //   questionLabel: 'PERGUNTA C 3',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_3_C1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_3_C2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_3_C3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_3_C4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_3_C5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // },
+      // {
+      //   questionId: 'question_c_4',
+      //   questionLabel: 'PERGUNTA C 4',
+      //   questionOptions: [
+      //     {
+      //       answerId: 'answer_4_C1',
+      //       answerLabel: 'Muito conciliador',
+      //       answerValue: optionValue1
+      //     },
+      //     {
+      //       answerId: 'answer_4_C2',
+      //       answerLabel: 'Conciliador',
+      //       answerValue: optionValue2
+      //     },
+      //     {
+      //       answerId: 'answer_4_C3',
+      //       answerLabel: 'Meio-termo',
+      //       answerValue: optionValue3
+      //     },
+      //     {
+      //       answerId: 'answer_4_C4',
+      //       answerLabel: 'Conflitivo',
+      //       answerValue: optionValue4
+      //     },
+      //     {
+      //       answerId: 'answer_4_C5',
+      //       answerLabel: 'Muito conflitivo',
+      //       answerValue: optionValue5
+      //     }
+      //   ]
+      // }
     ]
   }
 ]

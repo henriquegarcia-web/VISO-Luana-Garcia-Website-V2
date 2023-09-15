@@ -5,29 +5,45 @@ import * as I from 'react-icons/fi'
 
 import { Link } from 'react-router-dom'
 
-import AssessmentForm from '../AssessmentForm'
+import { AssessmentFormModal, AssessmentViewModal } from '../AssessmentForm'
 
-import { getUserDataById } from '../../../../../firebase/contact'
+import {
+  getUserDataById,
+  handleGetUserData
+} from '../../../../../firebase/contact'
+
+import { timestampToDate } from '../../../../../utils/convertTimestamp'
 
 const AssessmentViewer = ({ userId }) => {
   const [modalShow, setModalShow] = useState(false)
+  const [modalViewShow, setModalViewShow] = useState(false)
 
   const [userData, setUserData] = useState({})
-  const [userDataLoading, setUserDataLoading] = useState(true)
+  const [resultToView, setResultToView] = useState({})
 
   const handleShowModal = () => setModalShow(true)
   const handleHideModal = () => setModalShow(false)
 
-  useEffect(() => {
-    const getUserData = async () => {
-      setUserDataLoading(true)
-      const userDataResponse = await getUserDataById(userId)
-      setUserData(userDataResponse)
-      setUserDataLoading(false)
-    }
+  const handleOpenViewModal = (resultToView) => {
+    setResultToView(resultToView)
+    setModalViewShow(true)
+  }
+  const handleCloseViewModal = () => {
+    setResultToView({})
+    setModalViewShow(false)
+  }
 
-    getUserData()
-  }, [])
+  useEffect(() => {
+    const unsubscribe = handleGetUserData(userId, (accountData) => {
+      setUserData(accountData)
+    })
+
+    if (unsubscribe) {
+      return () => {
+        unsubscribe()
+      }
+    }
+  }, [userId])
 
   return (
     <S.AssessmentViewer>
@@ -45,8 +61,15 @@ const AssessmentViewer = ({ userId }) => {
           <S.AssessmentListWrapper>
             {userData?.userAssessments.map((assessmentResult) => (
               <S.AssessmentListItem>
-                Teste realizado em: 22/10/2023
-                {/* {assessmentResult} */}
+                <S.AssessmentListItemLabel>
+                  Teste realizado em:{' '}
+                  {timestampToDate(assessmentResult.assessmentRealizedAt)}
+                </S.AssessmentListItemLabel>
+                <S.AssessmentListItemInput
+                  onClick={() => handleOpenViewModal(assessmentResult)}
+                >
+                  Ver
+                </S.AssessmentListItemInput>
               </S.AssessmentListItem>
             ))}
           </S.AssessmentListWrapper>
@@ -58,7 +81,17 @@ const AssessmentViewer = ({ userId }) => {
         )}
       </S.AssessmentList>
 
-      <AssessmentForm show={modalShow} onHide={handleHideModal} />
+      <AssessmentFormModal
+        show={modalShow}
+        onHide={handleHideModal}
+        userId={userId}
+      />
+
+      <AssessmentViewModal
+        show={modalViewShow}
+        onHide={handleCloseViewModal}
+        resultToView={resultToView}
+      />
     </S.AssessmentViewer>
   )
 }

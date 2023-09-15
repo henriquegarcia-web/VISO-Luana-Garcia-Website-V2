@@ -9,10 +9,7 @@ import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 
-import {
-  createUserProfile,
-  checkIfUserExists
-} from '../../../../../firebase/contact'
+import { createUserProfile } from '../../../../../firebase/contact'
 
 const assessmentSchema = Yup.object().shape({
   userName: Yup.string().required(),
@@ -36,22 +33,12 @@ const AssessmentLogin = () => {
   const handleAssessmentLogin = async (data) => {
     if (!isValid) return
 
-    // VALIDAR ANTES SE O USUÁRIO JÁ EXISTE
-
-    const checkIfUserExistsResponse = await checkIfUserExists({
-      userPhone: data.userPhone
-    })
-
-    if (!!checkIfUserExistsResponse) {
-      reset()
-      navigate(`/analise-disc/${createUserResponseId}`)
-      return
-    }
-
     const createUserResponseId = await createUserProfile({
       userName: data.userName,
       userPhone: data.userPhone
     })
+
+    console.log(createUserResponseId)
 
     if (createUserResponseId) {
       reset()

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as S from './style'
 import * as G from '../../../../../globalStyles'
 import * as I from 'react-icons/fi'
@@ -12,11 +12,10 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
 
 import discQuestions from '../../../../../data/discQuestions'
-import { useEffect } from 'react'
 
-const AssessmentForm = (props) => {
-  const [concluded, setConcluded] = useState(false)
+import { handleRegisterAssessment } from '../../../../../firebase/contact'
 
+const AssessmentFormModal = (props) => {
   return (
     <Modal
       {...props}
@@ -32,21 +31,64 @@ const AssessmentForm = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal_content">
-        {!concluded ? (
-          <AssessmentConclusion />
-        ) : (
-          <Assessment setConcluded={setConcluded} onHide={props.onHide} />
-        )}
+        <Assessment onHide={props.onHide} userId={props.userId} />
       </Modal.Body>
     </Modal>
   )
 }
 
-export default AssessmentForm
+const AssessmentViewModal = (props) => {
+  return (
+    <Modal
+      {...props}
+      size="sm"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          <S.AssessmentFormHeader>
+            Análise de perfil <b>DISC</b>
+          </S.AssessmentFormHeader>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="modal_content">
+        <AssessmentConclusion
+          savedResults={props.resultToView}
+          onHide={props.onHide}
+        />
+        {/* <Assessment onHide={props.onHide} userId={props.userId} /> */}
+      </Modal.Body>
+    </Modal>
+  )
+}
+
+export { AssessmentFormModal, AssessmentViewModal }
 
 // ============================================ ASSESSMENT CONCLUSION
 
-export const Assessment = ({ setConcluded, onHide }) => {
+export const AssessmentConclusion = ({ savedResults, onHide, isFirstTime }) => {
+  return (
+    <S.AssessmentConclusion>
+      {isFirstTime && (
+        <S.AssessmentConclusionLabel>
+          <b>Parabéns!</b> Análise concluída com sucesso.
+        </S.AssessmentConclusionLabel>
+      )}
+      <S.AssessmentConclusionResults>Resultado</S.AssessmentConclusionResults>
+      <S.AssessmentConclusionCta onClick={onHide}>
+        Fechar
+      </S.AssessmentConclusionCta>
+    </S.AssessmentConclusion>
+  )
+}
+
+// ============================================ ASSESSMENT FORM
+
+export const Assessment = ({ onHide, userId }) => {
+  const [concluded, setConcluded] = useState(false)
+  const [savedResults, setSavedResults] = useState({})
+
   const { handleSubmit, register, formState, reset, control, watch } = useForm()
   const { errors, isSubmitting, isValid } = formState
 
@@ -96,12 +138,42 @@ export const Assessment = ({ setConcluded, onHide }) => {
     return sumByGroup
   }
 
-  const handleSubmitData = (data) => {
+  const handleSubmitData = async (data) => {
     const sumByGroup = calculateSumByQuestionGroup(data)
 
-    console.log(sumByGroup)
-    setConcluded(true)
+    const assessmentData = {
+      assessmentRealizedAt: Date.now(),
+      dominanceResult: sumByGroup.question_group_d,
+      influenceResult: sumByGroup.question_group_i,
+      stabilityResult: sumByGroup.question_group_s,
+      conformityResult: sumByGroup.question_group_c
+    }
+
+    const registerAssessmentRespose = await handleRegisterAssessment({
+      userId: userId,
+      assessmentData: assessmentData
+    })
+
+    if (!!registerAssessmentRespose) {
+      setConcluded(true)
+      setSavedResults(registerAssessmentRespose)
+      reset()
+      return
+    }
+
+    setConcluded(false)
+    setSavedResults({})
   }
+
+  if (concluded)
+    return (
+      <AssessmentConclusion
+        savedResults={savedResults}
+        onHide={onHide}
+        isFirstTime
+      />
+    )
+
   return (
     <S.AssessmentForm onSubmit={handleSubmit(handleSubmitData)}>
       <S.AssessmentFormStages>
@@ -159,20 +231,5 @@ export const Assessment = ({ setConcluded, onHide }) => {
         </Button>
       </S.AssessmentFormFooter>
     </S.AssessmentForm>
-  )
-}
-
-// ============================================ ASSESSMENT CONCLUSION
-
-export const AssessmentConclusion = () => {
-  return (
-    <S.AssessmentConclusion>
-      <S.AssessmentConclusionLabel>
-        <b>Parabéns!</b> Análise concluída com sucesso.
-      </S.AssessmentConclusionLabel>
-      <S.AssessmentConclusionCta onClick={() => {}}>
-        Ver resultado
-      </S.AssessmentConclusionCta>
-    </S.AssessmentConclusion>
   )
 }

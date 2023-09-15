@@ -174,6 +174,14 @@ export const AssessmentConclusionLabel = styled.p`
   }
 `
 
+export const AssessmentConclusionResults = styled.div`
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+
+  border: 1px solid red;
+`
+
 export const AssessmentConclusionCta = styled.button`
   font-size: var(--text-paragraph);
   font-weight: 400;

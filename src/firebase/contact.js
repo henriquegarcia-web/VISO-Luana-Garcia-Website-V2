@@ -1,9 +1,34 @@
-import { database, ref, push, get } from './firebase'
+import {
+  database,
+  ref,
+  push,
+  get,
+  orderByChild,
+  query,
+  equalTo,
+  child,
+  set,
+  off,
+  onValue
+} from './firebase'
 
 // =================================================== CREATE ADMIN ACCOUNT
 
 const createUserProfile = async ({ userName, userPhone }) => {
   try {
+    const dbRef = ref(database, 'discAssessments')
+    const phoneQuery = await query(
+      dbRef,
+      orderByChild('userPhone'),
+      equalTo(userPhone)
+    )
+
+    const snapshot = await get(phoneQuery)
+
+    if (snapshot.exists()) {
+      return Object.keys(snapshot.val())[0]
+    }
+
     const initalAssessments = []
 
     const userData = {
@@ -17,31 +42,31 @@ const createUserProfile = async ({ userName, userPhone }) => {
 
     return userRef.key
   } catch (error) {
+    console.log(error)
+
     return null
   }
 }
 
-const checkIfUserExists = async ({ userPhone }) => {
-  try {
-    const querySnapshot = await get(
-      query(
-        child(ref(database, 'discAssessments'), 'userPhone'),
-        '==',
-        userPhone
-      )
-    )
+// const checkIfUserExists = async (userPhone) => {
+//   try {
+//     const usersRef = ref(database, 'discAssessments')
+//     const usersQuery = query(
+//       usersRef,
+//       orderByChild('userPhone'),
+//       equalTo(userPhone)
+//     )
+//     const usersSnapshot = await get(usersQuery)
 
-    if (querySnapshot.exists()) {
-      return querySnapshot.key
-    } else {
-      return null
-    }
-  } catch (error) {
-    // console.error('Erro ao verificar se o usuário existe:', error)
-    // throw error
-    return null
-  }
-}
+//     return usersSnapshot.exists()
+//   } catch (error) {
+//     console.error(
+//       'Erro ao verificar a existência do número de telefone:',
+//       error
+//     )
+//     return false
+//   }
+// }
 
 const getUserDataById = async (userId) => {
   try {
@@ -61,33 +86,55 @@ const getUserDataById = async (userId) => {
   }
 }
 
+// =================================================== REGISTER ASSESSMENT
+
+const handleRegisterAssessment = async ({ userId, assessmentData }) => {
+  try {
+    const userRef = ref(database, `discAssessments/${userId}/userAssessments`)
+    const userAssessmentsSnapshot = await get(userRef)
+    const userAssessments = userAssessmentsSnapshot.val() || []
+
+    userAssessments.push(assessmentData)
+
+    await set(userRef, userAssessments)
+
+    const newIndex = userAssessments.length - 1
+
+    return userAssessments[newIndex]
+  } catch (error) {
+    console.error('Erro ao obter os dados do usuário:', error)
+    return null
+  }
+}
+
 // =================================================== GET ADMIN ACCOUNTS
 
-// const getContacts = (callback) => {
-//   const contactsRef = ref(database, 'contacts')
+const handleGetUserData = (userId, callback) => {
+  const userRef = ref(database, 'discAssessments/' + userId)
 
-//   const listener = (snapshot) => {
-//     try {
-//       const contact = []
+  const listener = (snapshot) => {
+    try {
+      if (snapshot && snapshot.exists()) {
+        const userData = snapshot.val()
+        callback(userData)
+      } else {
+        callback(null)
+      }
+    } catch (error) {
+      toaster.danger('Falha ao obter dados da empresa')
+    }
+  }
 
-//       snapshot.forEach((contactSnapshot) => {
-//         const contactId = contactSnapshot.key
-//         const contactData = contactSnapshot.val()
-//         const account = { contactId, ...contactData }
-//         contacts.push(account)
-//       })
+  onValue(userRef, listener)
 
-//       callback(contacts)
-//     } catch (error) {
-//       console.error('Erro ao obter lista de contatos:', error)
-//     }
-//   }
+  return () => {
+    off(userRef, 'value', listener)
+  }
+}
 
-//   onValue(contactsRef, listener)
-
-//   return () => {
-//     off(contactsRef, 'value', listener)
-//   }
-// }
-
-export { createUserProfile, checkIfUserExists, getUserDataById }
+export {
+  createUserProfile,
+  getUserDataById,
+  handleRegisterAssessment,
+  handleGetUserData
+}

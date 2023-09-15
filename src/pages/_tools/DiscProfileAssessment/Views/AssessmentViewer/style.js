@@ -63,10 +63,42 @@ export const AssessmentListHeader = styled.div`
 
 export const AssessmentListWrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  width: 100%;
 `
 
 export const AssessmentListItem = styled.div`
   display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 6px;
+  padding: 4px 4px 4px 10px;
+
+  border: 1px solid var(--light-orange);
+`
+
+export const AssessmentListItemLabel = styled.div`
+  display: flex;
+  flex: 1;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  color: var(--text);
+`
+
+export const AssessmentListItemInput = styled.button`
+  display: flex;
+  border-radius: 6px;
+  padding: 4px 8px;
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  color: white;
+  background-color: var(--light-orange);
 `
 
 export const AssessmentListEmpty = styled.div`
